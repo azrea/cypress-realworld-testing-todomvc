@@ -12,30 +12,40 @@ describe("React TodoMVC", () => {
     cy.get(".todo-list li").should("have.length", 1)
 
     cy.get(".todo-list li").eq(0).find("label").should("contain", TODO_ITEM_ONE)
-  }),
-    it("can add three todos", () => {
-      cy.createDefaultTodos()
-      cy.get(".todo-list li").should("have.length", 3)
-    }),
-    it("should append new items to the bottom of the list", () => {
-      cy.createDefaultTodos()
+  })
 
-      cy.get(".todo-list li")
-        .eq(0)
-        .find("label")
-        .should("contain", TODO_ITEM_ONE)
+  it("can add three todos", () => {
+    cy.createDefaultTodos().as("todos")
+    cy.get("@todos").should("have.length", 3)
+  })
 
-      cy.get(".todo-list li")
-        .eq(1)
-        .find("label")
-        .should("contain", TODO_ITEM_TWO)
+  it("should append new items to the bottom of the list", () => {
+    cy.createDefaultTodos()
 
-      cy.get(".todo-list li")
-        .eq(2)
-        .find("label")
-        .should("contain", TODO_ITEM_THREE)
+    cy.get(".todo-list li").eq(0).find("label").should("contain", TODO_ITEM_ONE)
 
-      cy.get(".todo-count").should("contain", "3 items left")
-      cy.get(".todo-count").contains("3 items left")
-    })
+    cy.get(".todo-list li").eq(1).find("label").should("contain", TODO_ITEM_TWO)
+
+    cy.get(".todo-list li")
+      .eq(2)
+      .find("label")
+      .should("contain", TODO_ITEM_THREE)
+
+    cy.get(".todo-count").should("contain", "3 items left")
+    cy.get(".todo-count").contains("3 items left")
+  })
+
+  // alternative using alias
+  // it("should append new items to the bottom of the list", () => {
+  //   cy.createDefaultTodos().as("todos")
+
+  //   cy.get("@todos").eq(0).find("label").should("contain", TODO_ITEM_ONE)
+
+  //   cy.get("@todos").eq(1).find("label").should("contain", TODO_ITEM_TWO)
+
+  //   cy.get("@todos").eq(2).find("label").should("contain", TODO_ITEM_THREE)
+
+  //   cy.get(".todo-count").should("contain", "3 items left")
+  //   cy.get(".todo-count").contains("3 items left")
+  // })
 })
