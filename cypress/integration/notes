@@ -1,0 +1,17 @@
+focuses on the todo input field, when the app is first opened'
+
+should clear text input field when an item is added
+
+can mark a todo as "completed"
+
+the "Clear completed" button clears all completed todos
+
+allows you to edit a todo
+
+should save edits on blur
+
+should display the current number of todo items
+
+should persist its data after a page refresh
+
+can display only completed todos
